@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <!-- style  -->
+    <link rel="stylesheet" href="./style/style.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/1216/1216708.png?w=740">
+
+
+    <title>Blog page</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="header">
+            <h1>BLOG</h1>
+        </div>
+
+        <div class="row">
+            <!-- leftcolumn -->
+            <div class="leftcolumn">
+
+
+                <!-- 2nd card -->
+                <div class="card">
+                    <h2>Register and Login Page with .NET CORE</h2>
+                    <h5>Date: May 30, 2022</h5>
+                    <div class="" style="height:auto;">
+                        <img src="https://img.freepik.com/free-vector/isometric-landing-page-user-login_157884-17.jpg?w=740"
+                            class="img-fluid mx-auto d-block" alt="">
+                    </div>
+                    <ul>
+                        <li>Create a .NET CORE application save give a proper path to store the project.</li>
+
+                        <li>Open the project in visual studio and go to the solution explorer.</li>
+
+                        <li>Install the listed below package for the project
+                            <ol>
+                                <li>Entity Framework Core</li>
+                                <li>Entity Framework Core.SqlServer</li>
+                                <li>Entity Framework Core.Tools</li>
+                                <li>AspNetCore.Identity.EntityFrameworkCore</li>
+                            </ol>
+                        </li>
+
+                        <li>Then we need to add the <strong>"ConnectionString"</strong> in the <strong>
+                                appsettings.json</strong> file.</li>
+
+
+
+                        <!-- breakpoin -->
+                        <span id="dots">
+                            <strong> ...</strong></span><span id="more">
+                            <!-- breakpoin-end -->
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #ed9d13">&quot;ConnectionStrings&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #ed9d13">&quot;AuthConnectionString&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;Server=.;Database=Login_Register;Trusted_Connection=True;Encrypt=False;&quot;</span>
+        <span style="color: #d0d0d0">}</span>
+      </pre>
+                                </div>
+                            </div>
+
+                            <li>Create a folder named as <strong>Model</strong> and then create a class in that named as
+                                <strong>"AuthDbContext".</strong>
+                            </li>
+
+                            <li>Then open the file and create a constructor of <strong>AuthDbContext.</strong></li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"> <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #447fcf">AuthDbContext</span><span style="color: #d0d0d0">(DbContextOptions&lt;AuthDbContext&gt;</span> <span style="color: #d0d0d0">options):</span><span style="color: #6ab825; font-weight: bold">base</span><span style="color: #d0d0d0">(options)</span>
+        <span style="color: #d0d0d0">{</span>
+
+            <span style="color: #d0d0d0">}</span>
+    </pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then configure the method so add one line of code top of the
+                                <strong>"app.Authorization();"</strong> in <strong>Program.cs</strong> file.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">app</span><span style="color: #447fcf; text-decoration: underline">.UseAuthorization</span><span style="color: #d0d0d0">();</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>Then add the code in the service part.</li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">builder</span><span style="color: #447fcf; text-decoration: underline">.Services.AddDbContext</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">AuthDbContext</span><span style="color: #d0d0d0">&gt;(</span><span style="color: #6ab825; font-weight: bold">Options</span> <span style="color: #d0d0d0">=&gt;</span> <span style="color: #6ab825; font-weight: bold">Options</span><span style="color: #447fcf; text-decoration: underline">.UseSqlServer</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">builder</span><span style="color: #447fcf; text-decoration: underline">.Configuration.GetConnectionString</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;AuthConnectionString&quot;</span><span style="color: #d0d0d0">)));</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>Then migrate the Project and also update the database.</li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">add-migration</span> <span style="color: #6ab825; font-weight: bold">migration_name</span>
+
+<span style="color: #6ab825; font-weight: bold">update-database</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>Then check the <strong>SqlServer</strong> for checking whether the database is created
+                                or not. If it created then
+                                jumped to the next step.
+                            </li>
+
+                            <br>
+                            <h2>1.Register Page:</h2>
+
+                            <li>For adding the <strong>Register Page</strong> go to the <strong>Page</strong> folder and
+                                Right click on that, then
+                                Add a Razor page (Empty) and change the name as <strong> Register</strong> and then
+                                press Add button for successful
+                                add the page.
+                            </li>
+
+                            <li>
+                                Then Add a folder in the project and change then named as <strong>ViewModel</strong>
+                            </li>
+
+                            <li>
+                                Then Add a class named as <strong>Register.cs</strong> and write the code for that
+                                class.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">Required</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #447fcf; text-decoration: underline">.EmailAddress</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">string</span> <span style="color: #6ab825; font-weight: bold">Email</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">Required</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #447fcf; text-decoration: underline">.Password</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">MinLength</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">6</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">ErrorMessage</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;Password Contain minimum of 6 digits.&quot;</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">string</span> <span style="color: #6ab825; font-weight: bold">Password</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">Required</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #447fcf; text-decoration: underline">.Password</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">Compare</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">nameof</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">Password</span><span style="color: #d0d0d0">),</span><span style="color: #6ab825; font-weight: bold">ErrorMessage</span> <span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Password and Confirm Password didn&#39;t Match&quot;</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">string</span> <span style="color: #6ab825; font-weight: bold">ConfirmPassword</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then open the <strong>Register.cshtml.cs</strong> c# file and Add a public property over
+                                the <strong> OnGet().</strong> and bind the property.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">BindProperty</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">Register</span><span style="color: #d0d0d0">?</span> <span style="color: #6ab825; font-weight: bold">Model</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+    </pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then go to the <strong>Register.cshtml</strong> file and write the code for design the
+                                page.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;container mt-5&quot;</span><span style="color: #d0d0d0">&gt;</span>
+    <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;row justify-content-center align-items-center&quot;</span><span style="color: #d0d0d0">&gt;</span>
+    <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;col-sm-12 col-md-12 col-lg-4&quot;</span><span style="color: #d0d0d0">&gt;</span>
+        <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">h1</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Register</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">h1</span><span style="color: #d0d0d0">&gt;</span>
+
+        <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">form</span> <span style="color: #6ab825; font-weight: bold">method</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;post&quot;</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">@*&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">asp-validation-summary</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;All&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text-danger&quot;</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;*@</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">label</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-label&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Email&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Email</span> <span style="color: #6ab825; font-weight: bold">Address</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">label</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">input</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Email&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-control&quot;</span> <span style="color: #d0d0d0">/&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">span</span> <span style="color: #6ab825; font-weight: bold">asp-validation-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Email&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text-danger&quot;</span><span style="color: #d0d0d0">&gt;&lt;/</span><span style="color: #6ab825; font-weight: bold">span</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">label</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-label&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Password&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Password</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">label</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">input</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;password&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Password&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-control&quot;</span> <span style="color: #d0d0d0">/&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">span</span> <span style="color: #6ab825; font-weight: bold">asp-validation-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Password&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text-danger&quot;</span><span style="color: #d0d0d0">&gt;&lt;/</span><span style="color: #6ab825; font-weight: bold">span</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">label</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-label&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.ConfirmPassword&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Confirm</span> <span style="color: #6ab825; font-weight: bold">Password</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">label</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">input</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;password&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.ConfirmPassword&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-control&quot;</span> <span style="color: #d0d0d0">/&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">span</span> <span style="color: #6ab825; font-weight: bold">asp-validation-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.ConfirmPassword&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text-danger&quot;</span><span style="color: #d0d0d0">&gt;&lt;/</span><span style="color: #6ab825; font-weight: bold">span</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">button</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;submit&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;btn btn-primary&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Register</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">button</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+
+        <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">form</span><span style="color: #d0d0d0">&gt;</span>
+    <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+<span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+<span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>Then run the project to see the output.</li>
+
+                            <li>Then go to the <strong>Register.cshtml.cs</strong> file again and create a constructor
+                                of <strong>RegisterModel</strong> first. Then pass some code in the constructor bracket.
+                            </li>
+
+                            <li>
+                                Then click on UserManager and press <strong>Ctrl + .</strong> and then select
+                                <strong>Create and asignfield("UserManager")</strong> for auto created code and do same
+                                step for <strong>SignInManager</strong> also.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">RegisterModel</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">UserManager</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IdentityUser</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">userManager</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">SignInManager</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IdentityUser</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">signInManager</span><span style="color: #d0d0d0">)</span>
+        <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">this.userManager</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">userManager;</span>
+            <span style="color: #d0d0d0">this.signInManager</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">signInManager;</span>
+        <span style="color: #d0d0d0">}</span>
+</pre>
+                                </div>
+                            </div>
+
+                            <li>
+                                Then we need to write the <strong>POST</strong> method code for function the page
+                                properly.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">//</span><span style="color: #6ab825; font-weight: bold">POST</span> <span style="color: #6ab825; font-weight: bold">Method</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">async</span> <span style="color: #6ab825; font-weight: bold">Task</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IActionResult</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">OnPostAsync</span><span style="color: #d0d0d0">()</span>
+        <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">if</span> <span style="color: #d0d0d0">(ModelState.IsValid)</span>
+            <span style="color: #a61717; background-color: #e3d2d2">{</span>
+                <span style="color: #d0d0d0">var</span> <span style="color: #d0d0d0">user</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">new</span> <span style="color: #d0d0d0">IdentityUser()</span>
+                <span style="color: #a61717; background-color: #e3d2d2">{</span>
+                    <span style="color: #d0d0d0">UserName</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Model?.Email,</span>
+                    <span style="color: #d0d0d0">Email</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Model?.Email</span>
+                <span style="color: #d0d0d0">};</span>
+
+                <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #6ab825; font-weight: bold">result</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">await</span> <span style="color: #6ab825; font-weight: bold">userManager</span><span style="color: #447fcf; text-decoration: underline">.CreateAsync</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">user</span><span style="color: #d0d0d0">,</span><span style="color: #6ab825; font-weight: bold">Model</span><span style="color: #d0d0d0">?</span><span style="color: #447fcf; text-decoration: underline">.Password</span><span style="color: #d0d0d0">);</span>
+
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">result</span><span style="color: #447fcf; text-decoration: underline">.Succeeded</span><span style="color: #d0d0d0">)</span>
+                <span style="color: #d0d0d0">{</span>
+                    <span style="color: #d0d0d0">await</span> <span style="color: #d0d0d0">signInManager.SignInAsync(user,</span> <span style="color: #d0d0d0">false);</span>
+                    <span style="color: #d0d0d0">return</span> <span style="color: #d0d0d0">RedirectToPage(</span><span style="color: #ed9d13">&quot;Index&quot;</span><span style="color: #d0d0d0">);</span>
+                <span style="color: #d0d0d0">}</span>
+
+                <span style="color: #6ab825; font-weight: bold">foreach</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #6ab825; font-weight: bold">error</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #6ab825; font-weight: bold">result</span><span style="color: #447fcf; text-decoration: underline">.Errors</span><span style="color: #d0d0d0">)</span>
+                <span style="color: #d0d0d0">{</span>
+                    <span style="color: #d0d0d0">ModelState.AddModelError(</span><span style="color: #ed9d13">&quot;&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">error.Description);</span>
+                <span style="color: #d0d0d0">}</span>
+            <span style="color: #a61717; background-color: #e3d2d2">}</span>
+            <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">Page</span><span style="color: #d0d0d0">();</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then run the code and give some data in the form for test basic. If our code is work
+                                properly then after press the <strong>Register</strong> button it return back to the
+                                <strong>Index</strong> page else that stay in that same page.
+                            </li>
+
+                            <li>
+                                Then we basically checked the user signIn or not. So open the
+                                <strong>_Layout.cshtml</strong> page and import a package as well as injec t a service
+                                in the top of the page. If we dont use the package our code can't be work properly.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">@using</span> <span style="color: #6ab825; font-weight: bold">Microsoft</span><span style="color: #447fcf; text-decoration: underline">.AspNetCore.Identity</span>
+<span style="color: #6ab825; font-weight: bold">@inject</span> <span style="color: #6ab825; font-weight: bold">SignInManager</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IdentityUser</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">SignInManager</span>
+</pre>
+                                </div>
+                            </div>
+
+                            <li>
+                                Then write the condition statement for checking signin or not in the page. And the
+                                <strong> &lt;ul&gt;</strong> tag past in that condtion.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"> <span style="color: #d0d0d0">@*</span><span style="color: #6ab825; font-weight: bold">check</span> <span style="color: #6ab825; font-weight: bold">user</span> <span style="color: #6ab825; font-weight: bold">signed</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #6ab825; font-weight: bold">or</span> <span style="color: #6ab825; font-weight: bold">not</span><span style="color: #d0d0d0">*@</span>
+ <span style="color: #6ab825; font-weight: bold">@if</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">SignInManager</span><span style="color: #447fcf; text-decoration: underline">.IsSignedIn</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">User</span><span style="color: #d0d0d0">))</span>
+ <span style="color: #d0d0d0">{</span>
+   <span style="color: #d0d0d0">//</span><span style="color: #6ab825; font-weight: bold">ul</span> <span style="color: #6ab825; font-weight: bold">tag</span> <span style="color: #6ab825; font-weight: bold">code</span> <span style="color: #6ab825; font-weight: bold">past</span> <span style="color: #6ab825; font-weight: bold">here</span>
+ <span style="color: #d0d0d0">}</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                When we write the code it help us to if any user login successfully then only able to
+                                see the <strong> Home and Privacy</strong> tab else no one can see that tab.
+                            </li>
+
+                            <li>
+                                Then write the <strong>else</strong> part of the <strong>if</strong> condition. In the
+                                else part any user come without registration then he will see other tab in navbar that
+                                contain two button i.e SignIn and Register.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">else</span>
+    <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">&lt;ul</span> <span style="color: #d0d0d0">class=</span><span style="color: #ed9d13">&quot;navbar-nav d-flex justify-content-end flex-grow-1&quot;</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;li</span> <span style="color: #d0d0d0">class=</span><span style="color: #ed9d13">&quot;nav-item&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;a</span> <span style="color: #d0d0d0">asp-</span><span style="color: #6ab825; font-weight: bold">page</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;/login&quot;</span> <span style="color: #d0d0d0">class=</span><span style="color: #ed9d13">&quot;btn btn-primary&quot;</span><span style="color: #d0d0d0">&gt;Login&lt;/a&gt;</span>
+             <span style="color: #d0d0d0">&lt;/li&gt;</span>
+             <span style="color: #d0d0d0">&lt;li</span> <span style="color: #d0d0d0">class=</span><span style="color: #ed9d13">&quot;nav-item&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                 <span style="color: #d0d0d0">&lt;a</span> <span style="color: #d0d0d0">asp-</span><span style="color: #6ab825; font-weight: bold">page</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;/Register&quot;</span> <span style="color: #d0d0d0">class=</span><span style="color: #ed9d13">&quot;btn&quot;</span><span style="color: #d0d0d0">&gt;Register&lt;/a&gt;</span>
+              <span style="color: #d0d0d0">&lt;/li&gt;</span>
+       <span style="color: #d0d0d0">&lt;/ul&gt;</span>
+      <span style="color: #d0d0d0">}</span>
+  </pre>
+                                </div>
+
+                            </div>
+
+                            <h2>2.Login Page:</h2>
+
+                            <li>For adding the <strong>Loin Page</strong> go to the <strong>Page</strong> folder and
+                                Right click on that, then
+                                Add a Razor page (Empty) and change the name as <strong> Login</strong> and then
+                                press Add button for successful
+                                add the page.
+                            </li>
+
+                            <li>
+                                Then Add a class in view model folder named as <strong> Login.cs</strong>
+                            </li>
+
+                            <li>
+                                Then open the <strong>Login.cs</strong> page and write the code for the Login form.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">Required</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #447fcf; text-decoration: underline">.EmailAddress</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">string</span><span style="color: #d0d0d0">?</span> <span style="color: #6ab825; font-weight: bold">Email</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">Required</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">DataType</span><span style="color: #447fcf; text-decoration: underline">.Password</span><span style="color: #d0d0d0">)]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">string</span><span style="color: #d0d0d0">?</span> <span style="color: #6ab825; font-weight: bold">Password</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">bool</span> <span style="color: #6ab825; font-weight: bold">RememberMe</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then open the <strong>Login.cshtml.cs</strong> c# file and Add a public property over
+                                the <strong> OnGet().</strong> and bind the property.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">[</span><span style="color: #6ab825; font-weight: bold">BindProperty</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">Login</span><span style="color: #d0d0d0">?</span> <span style="color: #6ab825; font-weight: bold">Model</span> <span style="color: #d0d0d0">{</span> <span style="color: #d0d0d0">get;</span> <span style="color: #d0d0d0">set;</span> <span style="color: #d0d0d0">}</span>
+    </pre>
+                                </div>
+                            </div>
+
+                            <li>
+                                Then open the <strong> Login.cshtml </strong>page and write the code for design the
+                                page.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;container mt-5&quot;</span><span style="color: #d0d0d0">&gt;</span>
+
+    <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;row justify-content-center align-items-center&quot;</span><span style="color: #d0d0d0">&gt;</span>
+
+    <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;col-sm-12 col-md-12 col-lg-4&quot;</span><span style="color: #d0d0d0">&gt;</span>
+        <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">h1</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Login</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">h1</span><span style="color: #d0d0d0">&gt;</span>
+
+        <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">form</span> <span style="color: #6ab825; font-weight: bold">method</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;post&quot;</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">label</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-label&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Email&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Email</span> <span style="color: #6ab825; font-weight: bold">Address</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">label</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">input</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Email&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-control&quot;</span> <span style="color: #d0d0d0">/&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">span</span> <span style="color: #6ab825; font-weight: bold">asp-validation-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Email&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text-danger&quot;</span><span style="color: #d0d0d0">&gt;&lt;/</span><span style="color: #6ab825; font-weight: bold">span</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">label</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-label&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Password&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Password</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">label</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">input</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Password&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Password&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-control&quot;</span> <span style="color: #d0d0d0">/&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">span</span> <span style="color: #6ab825; font-weight: bold">asp-validation-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.Password&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;text-danger&quot;</span><span style="color: #d0d0d0">&gt;&lt;/</span><span style="color: #6ab825; font-weight: bold">span</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3 form-check&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">input</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;checkbox&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.RememberMe&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-check-input&quot;</span> <span style="color: #d0d0d0">/&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">span</span> <span style="color: #6ab825; font-weight: bold">asp-validation-for</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Model.RememberMe&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;form-check-label&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Remember</span> <span style="color: #6ab825; font-weight: bold">Me</span><span style="color: #d0d0d0">?&lt;/</span><span style="color: #6ab825; font-weight: bold">span</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;mb-3&quot;</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">button</span> <span style="color: #6ab825; font-weight: bold">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;submit&quot;</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;btn btn-primary&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Submit</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">button</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+
+        <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">form</span><span style="color: #d0d0d0">&gt;</span>
+    <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+<span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+<span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                For Adding functionality of the <strong>Login form</strong> we need to write the
+                                <strong>POST</strong> method. So go to <strong>Login.cshtml.cs</strong> page and
+                                write the code below from <strong>OnGet().</strong>
+                            </li>
+
+                            <li>
+                                First create a Constructor of <strong> LoginModel</strong> and pass the signInManager in
+                                the bracket.
+                            </li>
+
+                            <li>
+                                Then click on <strong>SignInManager</strong> and press <strong>Ctrl + .</strong> and
+                                select the <strong>Create and SignInProperty(...)</strong>, that automatically write the
+                                code.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">LoginModel</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">SignInManager</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IdentityUser</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">signInManager</span><span style="color: #d0d0d0">)</span>
+    <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">this.signInManager</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">signInManager;</span>
+     <span style="color: #d0d0d0">}</span>
+     </pre>
+                                </div>
+                            </div>
+
+                            <li>
+                                Then create a <strong>OnPostAsync()</strong> for <strong>POST</strong> method and write
+                                the code for that method.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">async</span> <span style="color: #6ab825; font-weight: bold">Task</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IActionResult</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">OnPostAsync</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">string</span><span style="color: #d0d0d0">?</span> <span style="color: #6ab825; font-weight: bold">returnUrl</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">null</span><span style="color: #d0d0d0">)</span>
+        <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">if</span> <span style="color: #d0d0d0">(ModelState.IsValid)</span>
+            <span style="color: #a61717; background-color: #e3d2d2">{</span>
+                <span style="color: #d0d0d0">var</span> <span style="color: #d0d0d0">identityResult</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">await</span> <span style="color: #d0d0d0">signInManager.PasswordSignInAsync(Model?.Email,</span> <span style="color: #d0d0d0">Model?.Password,</span> <span style="color: #d0d0d0">Model.RememberMe,</span> <span style="color: #d0d0d0">false);</span>
+               <span style="color: #d0d0d0">if</span> <span style="color: #d0d0d0">(identityResult.Succeeded)</span>
+               <span style="color: #a61717; background-color: #e3d2d2">{</span>
+                    <span style="color: #d0d0d0">if</span> <span style="color: #d0d0d0">(returnUrl</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">null</span> <span style="color: #d0d0d0">||</span> <span style="color: #d0d0d0">returnUrl</span> <span style="color: #d0d0d0">==</span> <span style="color: #ed9d13">&quot;/&quot;</span><span style="color: #d0d0d0">)</span>
+                    <span style="color: #a61717; background-color: #e3d2d2">{</span>
+                        <span style="color: #d0d0d0">return</span> <span style="color: #d0d0d0">RedirectToPage(</span><span style="color: #ed9d13">&quot;Index&quot;</span><span style="color: #d0d0d0">);</span>
+                    <span style="color: #d0d0d0">}</span>
+                    <span style="color: #6ab825; font-weight: bold">else</span>
+                    <span style="color: #d0d0d0">{</span>
+                        <span style="color: #d0d0d0">return</span> <span style="color: #d0d0d0">RedirectToPage(returnUrl);</span>
+                    <span style="color: #d0d0d0">}</span>
+               <span style="color: #a61717; background-color: #e3d2d2">}</span>
+                <span style="color: #6ab825; font-weight: bold">ModelState</span><span style="color: #447fcf; text-decoration: underline">.AddModelError</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Username pr Password incorrect&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #a61717; background-color: #e3d2d2">}</span>
+            <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">Page</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #a61717; background-color: #e3d2d2">}</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then run the code for testing the page. If the page work properly and the page is
+                                redirect to the <strong>Index</strong> page with the correct ID and Password.
+                            </li>
+
+                            <br>
+                            <h2>3.SignOut/LogOut page:</h2>
+
+                            <li>For adding the <strong>Logout Page</strong> go to the <strong>Page</strong> folder and
+                                Right click on that, then Add a Razor page (Empty) and change the name as <strong>
+                                    Logout</strong> and then press Add button for successful add the page.
+                            </li>
+
+                            <li>
+                                In the <strong>_Logout.cshtml</strong> page we write the code for notification over the
+                                Logout or not.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">form</span> <span style="color: #6ab825; font-weight: bold">method</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;post&quot;</span><span style="color: #d0d0d0">&gt;</span>
+    <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">dir</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;container mt-5&quot;</span><span style="color: #d0d0d0">&gt;</span>
+
+    <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;row justify-content-center&quot;</span><span style="color: #d0d0d0">&gt;</span>
+        <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">div</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;col-sm-12 col-md-12 col-lg-4&quot;</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">p</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Are</span> <span style="color: #6ab825; font-weight: bold">you</span> <span style="color: #6ab825; font-weight: bold">sure</span> <span style="color: #6ab825; font-weight: bold">you</span> <span style="color: #6ab825; font-weight: bold">want</span> <span style="color: #6ab825; font-weight: bold">to</span> <span style="color: #6ab825; font-weight: bold">Logout</span><span style="color: #d0d0d0">?&lt;/</span><span style="color: #6ab825; font-weight: bold">p</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">p</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">button</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;btn btn-primary&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-page-handler</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Logout&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">Yes</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">button</span><span style="color: #d0d0d0">&gt;</span>
+                <span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">button</span> <span style="color: #6ab825; font-weight: bold">class</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;btn btn-light m-lg-5 border-dark&quot;</span> <span style="color: #6ab825; font-weight: bold">asp-page-handler</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;DontLogout&quot;</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">No</span><span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">button</span><span style="color: #d0d0d0">&gt;</span>
+            <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">p</span><span style="color: #d0d0d0">&gt;</span>
+        <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+    <span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">div</span><span style="color: #d0d0d0">&gt;</span>
+
+<span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">dir</span><span style="color: #d0d0d0">&gt;</span>
+<span style="color: #d0d0d0">&lt;/</span><span style="color: #6ab825; font-weight: bold">form</span><span style="color: #d0d0d0">&gt;</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then open the <strong>Logout.cshtml.cs</strong> page for write the code for the
+                                <strong>POST</strong> method.
+                            </li>
+
+                            <li>
+                                In this page we first create a constructor of <strong>Logout Model</strong> by pressing
+                                <strong>Ctor + Tab</strong>. Then pass thr <strong>SignInManager</strong> in the
+                                bracket.
+                            </li>
+
+                            <li>
+                                Then click on <strong>SignInManager</strong> and press <strong>Ctrl + .</strong> and
+                                select <strong>Create and asign field("SignInManager")</strong>. It auto created the
+                                needed code.
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">LogoutModel</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">SignInManager</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IdentityUser</span><span style="color: #d0d0d0">&gt;</span><span style="color: #6ab825; font-weight: bold">signInManager</span><span style="color: #d0d0d0">)</span>
+  <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">this.signInManager</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">signInManager;</span>
+ <span style="color: #d0d0d0">}</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then create <strong>POST</strong> method for Logout named as
+                                <strong>OnPostLogoutAsyn()</strong> and for DontLogout named as
+                                <strong>OnPostDontLogoutAsyn()</strong>
+                            </li>
+
+                            <div class="code-block">
+                                <div
+                                    style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                    <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">async</span> <span style="color: #6ab825; font-weight: bold">Task</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IActionResult</span><span style="color: #d0d0d0">&gt;</span> <span style="color: #6ab825; font-weight: bold">OnPostLogoutAsync</span><span style="color: #d0d0d0">()</span>
+  <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">await</span> <span style="color: #d0d0d0">signInManager.SignOutAsync();</span>
+    <span style="color: #d0d0d0">return</span> <span style="color: #d0d0d0">RedirectToPage(</span><span style="color: #ed9d13">&quot;Login&quot;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #d0d0d0">}</span>
+
+<span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">IActionResult</span> <span style="color: #6ab825; font-weight: bold">OnPostDontLogoutAsync</span><span style="color: #d0d0d0">()</span>
+ <span style="color: #d0d0d0">{</span>
+     <span style="color: #d0d0d0">return</span> <span style="color: #d0d0d0">RedirectToPage(</span><span style="color: #ed9d13">&quot;Index&quot;</span><span style="color: #d0d0d0">);</span>
+ <span style="color: #d0d0d0">}</span>
+</pre>
+                                </div>
+
+                            </div>
+
+                            <li>
+                                Then run the code for checking the functionality work or not.
+                            </li>
+
+                            <li>
+                                Then we need to add a <strong> [Authorization]</strong> in
+                                <strong>Privacy.cshtml.cs</strong> page for Authorizating the project.
+                                It help the user, if anyone try to open that page without login then it can't be open.
+                            </li>
+
+                            <li>
+                                Then set a path in the <strong>Program.cs</strong> page for the user who try to open the tab without login thy redirect to the
+                                <strong>Login page</strong> directly.
+                            </li>
+
+                            <div class="code-block">
+<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">builder</span><span style="color: #447fcf; text-decoration: underline">.Services.AddIdentity</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">IdentityUser</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">IdentityRole</span><span style="color: #d0d0d0">&gt;()</span><span style="color: #447fcf; text-decoration: underline">.AddEntityFrameworkStores</span><span style="color: #d0d0d0">&lt;</span><span style="color: #6ab825; font-weight: bold">AuthDbContext</span><span style="color: #d0d0d0">&gt;();</span>
+    <span style="color: #6ab825; font-weight: bold">builder</span><span style="color: #447fcf; text-decoration: underline">.Services.ConfigureApplicationCookie</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">config</span> <span style="color: #d0d0d0">=&gt;</span>
+    <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">config.LoginPath</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;/Login&quot;</span><span style="color: #d0d0d0">;</span>
+    <span style="color: #d0d0d0">});</span>
+    </pre></div>
+    
+                            </div>
+
+                            <li>
+                                Finally we Done the project completly.
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </span>
+                    </ul>
+
+                    <!-- readmore-button  -->
+                    <div class="r-btn">
+                        <button onclick="myFunction()" id="readBtn">
+                            Read More
+                        </button>
+                    </div>
+                    <!-- readmore-button-end  -->
+                </div>
+                <!-- 2nd card-end -->
+
+
+
+            </div>
+            <!-- leftcolumn-end -->
+
+            <!-- rightcolumn -->
+            <div class="rightcolumn">
+                <div class="card">
+                    <div class="tag">
+                        <a href="https://github.com/Mgt789/Login_Register" target="_blank">
+                            3. Register and Login Page with .NET CORE</a>
+                    </div><br>
+                </div>
+                <div class="card">
+                    <h3>Popular Post</h3>
+                    <div class="fakeimg">
+                        <a href="./Register_Login.html">
+                            <img src="https://img.freepik.com/free-vector/isometric-landing-page-user-login_157884-17.jpg?w=740"
+                                class="img-fluid mx-auto d-block" alt="">
+                        </a>
+                    </div><br>
+                    <!-- <div class="fakeimg">Image</div><br>
+                    <div class="fakeimg">Image</div> -->
+                </div>
+                <div class="card">
+                    <h3>Follow Me</h3>
+                    <div class="social">
+                        <a href="https://www.facebook.com/chandan.meher.948cm/" target="_blank">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://wa.me/6370137741" target="_blank">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mr_antique_143/" target="_blank">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://in.linkedin.com/in/chandan-meher-b81ab5135" target="_blank">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Mgt789" target="_blank">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- scroll down button -->
+        <!-- <button onclick="topFunction()" id="myBtn" title="Go to top">
+            <i class="bi bi-arrow-up-circle"></i>
+            </button> -->
+        <button onclick="topFunction()" id="myBtn" title="Go to top">
+            <i class="bi bi-arrow-up-circle"></i>
+        </button>
+
+
+
+        <!-- scroll down button-end -->
+
+        <div class="footer">
+            copyright @copy by <span>mgt</span>. All Right Reserved.
+        </div>
+        <!-- rightcolumn-end -->
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+            </script>
+    </div>
+
+
+    <!-- readmore-btn  -->
+    <script src="./style/readme_button.js"></script>
+    <!-- readmore-btn-end -->
+
+
+    <!-- top-down button  -->
+    <script src="./style/top-down-button.js"></script>
+    <!-- top-down button  -->
+</body>
+
+</html>
